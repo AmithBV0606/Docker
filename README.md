@@ -131,3 +131,21 @@ docker run -p 5173:5173 -v "$(pwd):/app" -v /app/node_modules react-app
  -  This means that our local code is linked to the container and any changes made locally will immediately be reflected inside the running container.
 
  - We're using another volume mount to track the dependency changes, so that we don't have to re-build the image when we install new packages.
+
+ ## Publishing the docker image to docker hub(react-app) :
+
+**Step 1** : Login to docker hub through CLI, using the the following command :
+
+```bash
+docker login
+```
+
+**Step 2** : Then `cd` into the react-app folder and run the following command :
+
+```bash
+docker tag react-app amithrao/react-app
+
+# and 
+
+docker push amithrao/react-app
+```
