@@ -115,7 +115,11 @@ Note : This command will also not work due to vite. In order to make it work, we
 
 Now run the same command i.e `docker run -p 5173:5173 react-app`.
 
-This will work, but there's another problem. Whenever we make some changes in our code, the changes won't be there on the app that is running on the port 5173. In order to overcome this issue we need to further adjust our command.
+- This will work, but there's another problem. Whenever we make some changes in our code, the changes won't be there on the app that is running on the port 5173. 
+
+- This happens because when we build the docker image and run the container, the code is then copied into that container.  
+
+- In order to overcome this issue we need to further adjust our command.
 
 **Final command to dockerize our react-app**
 
@@ -124,12 +128,13 @@ docker run -p 5173:5173 -v "$(pwd):/app" -v /app/node_modules react-app
  ```
 
  NOTE : 
- - `-v` stands for Volumes.
 
  - `"$(pwd):/app"` : This tells the docker to mount the current working directory(local code space ) into the app directory inside the container. 
  
  -  This means that our local code is linked to the container and any changes made locally will immediately be reflected inside the running container.
 
+ - `-v` stands for Volumes, which keeps track of those changes.
+ 
  - We're using another volume mount to track the dependency changes, so that we don't have to re-build the image when we install new packages.
 
  ## Publishing the docker image to docker hub(react-app) :
@@ -148,4 +153,37 @@ docker tag react-app amithrao/react-app
 # and 
 
 docker push amithrao/react-app
+```
+
+## Docker compose (react-app-compose) : 
+
+- It's a tool that allows us to define and manage multi-container docker applications.
+
+- It uses `.yml` file to configure the services, Networks and Volumes for your applications, which enables us to run and scale the entire application with a single command.
+
+- We don't have to run 10 commands seperately to run 10 different containers for one application, all thanks to docker compose. 
+
+- We can list all the information needed to run these 10 containers in a single file and run only one command that automatically triggers running the 10 containers.
+
+### Steps to implement docker compose : 
+
+**Step 1 :** Naviate to the root folder of the project.
+
+**Step 2 :** Run the following command
+
+```bash
+docker init
+```
+
+NOTE : Using `docker init` we initialize our app with all the files needed.
+
+**Step 3 :** Following questions will be asked
+
+```
+? What application platform does your project use? Node
+? What version of Node do you want to use? 23.6.0
+? Which package manager do you want to use? npm
+? Do you want to run "npm run build" before starting your server? No
+? What command do you want to use to start the app? npm run dev
+? What port does your server listen on? 5173
 ```
