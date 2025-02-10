@@ -212,3 +212,15 @@ NOTE : Using `docker init` we initialize our app with all the files needed.
 2. **Rebuild :** The rebuild process starts with the creation of new container images and then it updates the services. This is benificial when rolling out changes to applications in production, guaranteeing the most recent version of the code is in operation.
 
 3. **Sync-Restart :** This operation merges the Sync and Rebuild processes.
+
+#### After creating the compose.yml file, run the following command : 
+
+```bash
+docker compose up
+```
+
+This command alone isn't enough, because the changes made in the code on your laptop will not be reflected on the browsers localhost. To overcome this, run the following command in new terminal
+
+```bash
+docker compose watch
+```
