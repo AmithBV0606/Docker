@@ -213,8 +213,19 @@ NOTE : Using `docker init` we initialize our app with all the files needed.
 
 3. **Sync-Restart :** This operation merges the Sync and Rebuild processes.
 
-#### After creating the compose.yml file, run the following command : 
+### Steps for containerizing the full-stack mern application :
 
+**Step 1 :** Navigate to the frontend folder and create `Dockerfile` and `.dockerignore` file.
+
+**Step 2 :** Write all the steps inside `Dockerfile` to create the image and run the container. Add the `node_modules` folder to the `.dockerignore`.   
+
+**Step 3 :** Navigate to the backend folder and create `Dockerfile` and `.dockerignore` file.
+
+**Step 4 :** Write all the steps inside `Dockerfile` to create the image and run the container. Add the `node_modules` folder to the `.dockerignore`.
+
+**Step 5 :** Create a `compose.yaml` file, which links all the containers and contians the instruction to run those contianers.
+
+**Step 6 :** After creating the compose.yml file, run the following command
 ```bash
 docker compose up
 ```
@@ -240,3 +251,23 @@ docker compose watch
 - Docker Scout is a standalone service and platform that you can interact with using Docker Desktop, Docker Hub, the Docker CLI, and the Docker Scout Dashboard. 
 
 - Docker Scout also facilitates integrations with third-party systems, such as container registries and CI platforms
+
+## Dockerizing a Full-stack NextJs application (05_next-docker) :
+
+**Step 1 :** Run the following command.
+
+```bash
+docker init
+```
+
+**Step 2 :** Re-write all the commands in Dockerfile and compose.yaml file. 
+
+**Step 3 :** Then run the fillowing command.
+
+```bash
+docker compose up
+```
+
+```bash
+docker compose watch
+```
