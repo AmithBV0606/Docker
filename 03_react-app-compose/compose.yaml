@@ -1,5 +1,5 @@
 services:
-  web:
+  web: # Name of the image = react-app-compose-web
     build:
       context: .
     ports:

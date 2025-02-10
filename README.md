@@ -134,7 +134,7 @@ docker run -p 5173:5173 -v "$(pwd):/app" -v /app/node_modules react-app
  -  This means that our local code is linked to the container and any changes made locally will immediately be reflected inside the running container.
 
  - `-v` stands for Volumes, which keeps track of those changes.
- 
+
  - We're using another volume mount to track the dependency changes, so that we don't have to re-build the image when we install new packages.
 
  ## Publishing the docker image to docker hub(react-app) :
@@ -187,3 +187,28 @@ NOTE : Using `docker init` we initialize our app with all the files needed.
 ? What command do you want to use to start the app? npm run dev
 ? What port does your server listen on? 5173
 ```
+
+## Docker compose watch(MERN demo) :
+
+- Only `docker compose` alone, isn't optimal for developer experience.
+
+- Everytime there is a change in the packages file, we have to re-run the container.
+
+- Yes, docker-compose solves the problem of showing upto date code changes through volumes, letting us manage multiple contaners in a single file and lets us do both things, building and running images.
+
+- But it still doesn't do it automatically, when we change something related to package file or when we think it's needed to rebuild the image.
+
+- This is where the `watch` feature comes in. 
+
+- Docker compose watch listens to our changes and does something like
+
+    - Rebuilding our app
+    - Re-running the container
+
+### Things that Docker Compose watch can do 
+
+1. **Sync :** This operation moves the changed files from our computer to the right places in the contianer, making sure that everything stays upto date in real time.
+
+2. **Rebuild :** The rebuild process starts with the creation of new container images and then it updates the services. This is benificial when rolling out changes to applications in production, guaranteeing the most recent version of the code is in operation.
+
+3. **Sync-Restart :** This operation merges the Sync and Rebuild processes.
