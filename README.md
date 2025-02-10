@@ -54,7 +54,7 @@ docker rm <container_name or container_id > --force
 
 Note : use `--force` only when you're trying to remove a running container.
 
-## Dockerizing a simple JavaScript application (simple-app)
+## Dockerizing a simple JavaScript application (01_simple-app)
 
 **To build the image :**
 
@@ -81,7 +81,7 @@ ls
 node hello.js
 ```
 
-## Dockerizing a vite React + TypeScript application (react-app)
+## Dockerizing a vite React + TypeScript application (02_react-app)
 
 **To build the image :**
 
@@ -137,7 +137,7 @@ docker run -p 5173:5173 -v "$(pwd):/app" -v /app/node_modules react-app
 
  - We're using another volume mount to track the dependency changes, so that we don't have to re-build the image when we install new packages.
 
- ## Publishing the docker image to docker hub(react-app) :
+ ## Publishing the docker image to docker hub(02_react-app) :
 
 **Step 1** : Login to docker hub through CLI, using the the following command :
 
@@ -155,7 +155,7 @@ docker tag react-app amithrao/react-app
 docker push amithrao/react-app
 ```
 
-## Docker compose (react-app-compose) : 
+## Docker compose (03_react-app-compose) : 
 
 - It's a tool that allows us to define and manage multi-container docker applications.
 
@@ -188,7 +188,7 @@ NOTE : Using `docker init` we initialize our app with all the files needed.
 ? What port does your server listen on? 5173
 ```
 
-## Docker compose watch(MERN demo) :
+## Docker compose watch(04_mern-docker) :
 
 - Only `docker compose` alone, isn't optimal for developer experience.
 
@@ -224,3 +224,19 @@ This command alone isn't enough, because the changes made in the code on your la
 ```bash
 docker compose watch
 ```
+
+## Docker Scout : 
+
+- Container images consist of layers and software packages, which are susceptible to vulnerabilities. These vulnerabilities can compromise the security of containers and applications.
+
+- Docker Scout is a solution for proactively enhancing your software supply chain security. 
+
+- By analyzing your images, Docker Scout compiles an inventory of components, also known as a Software Bill of Materials (SBOM). 
+
+- After careful analysis, docker scout creates a SBOM.
+
+- The SBOM is matched against a continuously updated vulnerability database to pinpoint security weaknesses.
+
+- Docker Scout is a standalone service and platform that you can interact with using Docker Desktop, Docker Hub, the Docker CLI, and the Docker Scout Dashboard. 
+
+- Docker Scout also facilitates integrations with third-party systems, such as container registries and CI platforms
